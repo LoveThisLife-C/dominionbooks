@@ -129,7 +129,8 @@ export function setupHeroSlideshow() {
     slides.forEach((slide, si) => slide.classList.toggle('is-active', si === index))
     if (dotsWrap) {
       ;[...dotsWrap.children].forEach((dot, di) => {
-        dot.setAttribute('aria-current', di === index ? 'true' : 'false')
+        if (di === index) dot.setAttribute('aria-current', 'true')
+        else dot.removeAttribute('aria-current')
       })
     }
   }
