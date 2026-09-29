@@ -933,7 +933,25 @@ h3 {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+  object-position: center center;
   border-radius: var(--radius);
+}
+
+.author-portrait {
+  margin: 0;
+}
+
+.author-portrait figcaption {
+  margin-top: 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.contact-aside {
+  display: grid;
+  gap: 0;
 }
 
 .inset-media {
@@ -982,15 +1000,29 @@ h3 {
 .footer-brand {
   display: flex;
   gap: 0.9rem;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
+.footer-logo {
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.footer-logo img,
 .footer-brand img {
-  width: 3rem;
-  height: 3rem;
+  width: 3.5rem;
+  height: 3.5rem;
   object-fit: contain;
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25));
+  display: block;
 }
 
 .footer-inner .brand-name {

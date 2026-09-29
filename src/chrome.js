@@ -53,7 +53,9 @@ export function mountChrome(active = 'home') {
         <div class="footer-top">
           <div class="footer-brand-block">
             <div class="footer-brand">
-              <img src="/assets/brand-mark.png" alt="" width="48" height="48" />
+              <span class="footer-logo">
+                <img src="/assets/brand-mark-footer.png" alt="" width="56" height="56" />
+              </span>
               <div>
                 <p class="brand-name">Dominion Books</p>
                 <p class="footer-tagline">Hope-filled titles for the church that longs to wake.</p>
