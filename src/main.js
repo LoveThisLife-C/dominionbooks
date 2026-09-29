@@ -1,3 +1,6 @@
+import { mountChrome } from './chrome.js'
+import './style.css'
+
 const PRICE_SINGLE = 19.99
 const PRICE_BULK = 12.0
 const SHIPPING = 4.39
@@ -23,8 +26,10 @@ const samplePages = [
 const money = (n) =>
   n.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 
-function setupOrder() {
+export function setupOrder() {
   const qtyInput = document.querySelector('#qty')
+  if (!qtyInput) return
+
   const booksTotal = document.querySelector('#books-total')
   const shipTotal = document.querySelector('#ship-total')
   const grandTotal = document.querySelector('#grand-total')
@@ -49,19 +54,21 @@ function setupOrder() {
   qtyInput.addEventListener('input', recalc)
   recalc()
 
-  form.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', (e) => {
     e.preventDefault()
     const qty = Number(qtyInput.value)
     const unit = qty >= BULK_THRESHOLD ? PRICE_BULK : PRICE_SINGLE
     const total = unit * qty + SHIPPING
     alert(
-      `Order ready: ${qty} book${qty > 1 ? 's' : ''} — ${money(total)} including shipping.\n\nPayPal checkout will open here once Howard’s merchant account is connected.`,
+      `Order ready: ${qty} book${qty > 1 ? 's' : ''} — ${money(total)} including shipping.\n\nPayPal checkout will open here once the merchant account is connected.`,
     )
   })
 }
 
-function setupSample() {
+export function setupSample() {
   const img = document.querySelector('#sample-page')
+  if (!img) return
+
   const label = document.querySelector('#sample-label')
   const dots = document.querySelector('#sample-dots')
   const prev = document.querySelector('#sample-prev')
@@ -90,59 +97,27 @@ function setupSample() {
     }, 180)
   }
 
-  prev.addEventListener('click', () => show(index - 1))
-  next.addEventListener('click', () => show(index + 1))
-
-  window.addEventListener('keydown', (e) => {
-    if (!document.querySelector('#sample')?.matches(':hover, :focus-within')) return
-    if (e.key === 'ArrowLeft') show(index - 1)
-    if (e.key === 'ArrowRight') show(index + 1)
-  })
-
-  let touchX = null
-  img.addEventListener('touchstart', (e) => {
-    touchX = e.changedTouches[0].clientX
-  })
-  img.addEventListener('touchend', (e) => {
-    if (touchX == null) return
-    const dx = e.changedTouches[0].clientX - touchX
-    if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1))
-    touchX = null
-  })
-
+  prev?.addEventListener('click', () => show(index - 1))
+  next?.addEventListener('click', () => show(index + 1))
   show(0)
 }
 
-function setupNav() {
-  const header = document.querySelector('.site-header')
-  const toggle = document.querySelector('.nav-toggle')
-  toggle?.addEventListener('click', () => {
-    const open = header.classList.toggle('is-open')
-    toggle.setAttribute('aria-expanded', String(open))
-  })
-
-  header.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      header.classList.remove('is-open')
-      toggle?.setAttribute('aria-expanded', 'false')
-    })
-  })
-}
-
-function setupContact() {
+export function setupContact() {
   const form = document.querySelector('#contact-form')
+  if (!form) return
   const status = document.querySelector('#contact-status')
   form.addEventListener('submit', (e) => {
     e.preventDefault()
     status.hidden = false
     status.textContent =
-      'Thanks — your message is ready to send. Email delivery will be wired to Howard’s inbox when hosting is live.'
+      'Thanks — your message is ready. Email delivery will be wired when hosting is live.'
     form.reset()
   })
 }
 
-document.querySelector('#year').textContent = String(new Date().getFullYear())
-setupNav()
-setupOrder()
-setupSample()
-setupContact()
+export function boot(active) {
+  mountChrome(active)
+  setupOrder()
+  setupSample()
+  setupContact()
+}

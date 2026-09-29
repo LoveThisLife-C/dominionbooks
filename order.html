@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order | Dominion Books</title>
+    <meta
+      name="description"
+      content="Order Adam’s Lost Dominion paperback — $19.99, or $12 each for two or more, plus $4.39 US shipping."
+    />
+    <meta property="og:image" content="/assets/og-share.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="/assets/brand-mark.png" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header" data-chrome="header"></header>
+
+    <main>
+      <section class="page-hero">
+        <div class="page-hero-media" aria-hidden="true">
+          <img src="/assets/banner-light.jpg" alt="" />
+          <div class="page-hero-veil"></div>
+        </div>
+        <div class="page-hero-inner">
+          <p class="eyebrow">US shipping only</p>
+          <h1>Order your copy</h1>
+          <p>
+            One book is $19.99. Order two or more and pay $12.00 each. Shipping is a flat $4.39 per
+            order anywhere in the United States.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner order-layout">
+          <div class="surface surface-pad">
+            <p class="eyebrow">Paperback</p>
+            <h2>Adam’s Lost Dominion</h2>
+            <p>
+              Printed edition · Media Mail within the U.S. · No international shipping at this time.
+            </p>
+            <img class="order-visual" src="/assets/product-book.jpg" alt="Paperback product photograph" />
+          </div>
+          <form class="order-form surface surface-pad" id="order-form">
+            <label class="field">
+              <span>Quantity</span>
+              <input type="number" name="qty" id="qty" min="1" max="50" value="1" />
+            </label>
+            <div class="totals" aria-live="polite">
+              <div><span>Books</span><strong id="books-total">$19.99</strong></div>
+              <div><span>Shipping</span><strong id="ship-total">$4.39</strong></div>
+              <div class="grand"><span>Total</span><strong id="grand-total">$24.38</strong></div>
+            </div>
+            <p class="price-note" id="price-note">Single-copy price · $19.99 each</p>
+            <button type="submit" class="btn btn-primary btn-wide" id="checkout-btn">
+              Continue to PayPal
+            </button>
+            <p class="fine-print">
+              PayPal checkout coming next — card, PayPal, and Venmo supported once the merchant
+              account is connected.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" data-chrome="footer"></footer>
+    <script type="module">
+      import { boot } from '/src/main.js'
+      boot('order')
+    </script>
+  </body>
+</html>
