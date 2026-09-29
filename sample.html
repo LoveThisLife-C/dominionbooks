@@ -41,13 +41,19 @@
         <div class="section-inner">
           <div class="sample-viewer reveal">
             <button type="button" class="sample-nav prev" id="sample-prev" aria-label="Previous page">‹</button>
-            <div class="sample-stage shine">
+            <div class="sample-stage shine" id="sample-stage">
               <img id="sample-page" src="/assets/cover-front.jpg" alt="Sample page" />
             </div>
             <button type="button" class="sample-nav next" id="sample-next" aria-label="Next page">›</button>
           </div>
           <div class="sample-meta">
             <span id="sample-label">Front cover</span>
+            <div class="sample-zoom" role="group" aria-label="Zoom preview">
+              <button type="button" id="sample-zoom-out" aria-label="Zoom out">−</button>
+              <span id="sample-zoom-level">100%</span>
+              <button type="button" id="sample-zoom-in" aria-label="Zoom in">+</button>
+              <button type="button" id="sample-zoom-reset" class="sample-zoom-reset">Reset</button>
+            </div>
             <div class="sample-dots" id="sample-dots" role="tablist" aria-label="Sample pages"></div>
           </div>
 

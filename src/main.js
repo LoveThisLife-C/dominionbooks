@@ -222,7 +222,32 @@ export function setupSample() {
   const dots = document.querySelector('#sample-dots')
   const prev = document.querySelector('#sample-prev')
   const next = document.querySelector('#sample-next')
+  const stage = document.querySelector('#sample-stage')
+  const zoomIn = document.querySelector('#sample-zoom-in')
+  const zoomOut = document.querySelector('#sample-zoom-out')
+  const zoomReset = document.querySelector('#sample-zoom-reset')
+  const zoomLevel = document.querySelector('#sample-zoom-level')
+
   let index = 0
+  let scale = 1
+  const MIN_ZOOM = 1
+  const MAX_ZOOM = 2.75
+  const STEP = 0.25
+
+  const applyZoom = () => {
+    scale = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, Number(scale.toFixed(2))))
+    img.style.transform = `scale(${scale})`
+    img.classList.toggle('is-zoomed', scale > 1)
+    stage?.classList.toggle('is-zoomed', scale > 1)
+    if (zoomLevel) zoomLevel.textContent = `${Math.round(scale * 100)}%`
+    if (zoomOut) zoomOut.disabled = scale <= MIN_ZOOM
+    if (zoomIn) zoomIn.disabled = scale >= MAX_ZOOM
+  }
+
+  const setZoom = (next) => {
+    scale = next
+    applyZoom()
+  }
 
   samplePages.forEach((page, i) => {
     const btn = document.createElement('button')
@@ -235,6 +260,8 @@ export function setupSample() {
   const show = (i) => {
     index = (i + samplePages.length) % samplePages.length
     img.classList.add('is-switching')
+    setZoom(1)
+    if (stage) stage.scrollTop = 0
     window.setTimeout(() => {
       img.src = samplePages[index].src
       img.alt = samplePages[index].label
@@ -248,6 +275,21 @@ export function setupSample() {
 
   prev?.addEventListener('click', () => show(index - 1))
   next?.addEventListener('click', () => show(index + 1))
+  zoomIn?.addEventListener('click', () => setZoom(scale + STEP))
+  zoomOut?.addEventListener('click', () => setZoom(scale - STEP))
+  zoomReset?.addEventListener('click', () => setZoom(1))
+
+  stage?.addEventListener(
+    'wheel',
+    (e) => {
+      if (!e.ctrlKey && !e.metaKey) return
+      e.preventDefault()
+      setZoom(scale + (e.deltaY < 0 ? STEP : -STEP))
+    },
+    { passive: false },
+  )
+
+  applyZoom()
   show(0)
 }
 
