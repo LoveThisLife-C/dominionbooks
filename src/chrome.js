@@ -61,7 +61,7 @@ export function mountChrome(active = 'home') {
               We publish clear, Christ-centered books for believers who want the everlasting gospel
               at the center — not the margins — of their faith.
             </p>
-            <a class="btn btn-primary footer-cta" href="/order.html">Order Adam’s Lost Dominion</a>
+            <a class="btn btn-pill footer-cta" href="/order.html">Order Adam’s Lost Dominion</a>
           </div>
 
           <div class="footer-cols">
