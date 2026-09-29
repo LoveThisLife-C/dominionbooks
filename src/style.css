@@ -224,7 +224,7 @@ main,
   z-index: 1;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.58) 48%, rgba(0, 0, 0, 0.28) 100%),
-    linear-gradient(0deg, #0a0a0a 0%, rgba(0, 0, 0, 0.72) 28%, transparent 62%);
+    linear-gradient(0deg, #0a0a0a 0%, rgba(0, 0, 0, 0.82) 34%, transparent 68%);
 }
 
 .hero-content-wrap {
@@ -640,9 +640,6 @@ a.promise:hover {
 }
 
 /* Soft overlap: hero flows into paperback details */
-.hero {
-  margin-bottom: -1px;
-}
 
 .section-wave {
   position: relative;
@@ -658,27 +655,7 @@ a.promise:hover {
   height: 100%;
 }
 
-.highlights-section > .section-wave-down {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 2;
-  height: clamp(2.75rem, 5.5vw, 4.5rem);
-  background: transparent;
-}
-
-.highlights-section > .section-wave-down svg {
-  position: absolute;
-  inset: -1px 0 0;
-  width: 100%;
-  height: calc(100% + 2px);
-}
-
-.highlights-section > .section-wave-down path {
-  fill: #0a0a0a;
-}
-
+/* Only the dark→light bottom wave — top joins the hero as one continuous dark band */
 .highlights-section > .section-wave-up {
   position: absolute;
   left: 0;
@@ -711,8 +688,8 @@ a.promise:hover {
 .highlights-section {
   position: relative;
   overflow: hidden;
-  margin-top: -2.85rem;
-  padding-top: clamp(4.75rem, 9vw, 7rem);
+  margin-top: 0;
+  padding-top: clamp(3rem, 6vw, 4.5rem);
   padding-bottom: clamp(4.25rem, 8vw, 6rem);
   background: #0a0a0a;
   color: #fff;
