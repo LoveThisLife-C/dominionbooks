@@ -46,17 +46,70 @@ export function mountChrome(active = 'home') {
 
   if (footer) {
     footer.innerHTML = `
+      <div class="footer-glow" aria-hidden="true"></div>
       <div class="footer-inner">
-        <div class="footer-brand">
-          <img src="/assets/brand-mark.png" alt="" width="40" height="40" />
-          <div>
-            <p class="brand-name">Dominion Books</p>
-            <p>Hope-filled titles for the church that longs to wake.</p>
+        <div class="footer-top">
+          <div class="footer-brand-block">
+            <div class="footer-brand">
+              <img src="/assets/brand-mark.png" alt="" width="48" height="48" />
+              <div>
+                <p class="brand-name">Dominion Books</p>
+                <p class="footer-tagline">Hope-filled titles for the church that longs to wake.</p>
+              </div>
+            </div>
+            <p class="footer-blurb">
+              We publish clear, Christ-centered books for believers who want the everlasting gospel
+              at the center — not the margins — of their faith.
+            </p>
+            <a class="btn btn-primary footer-cta" href="/order.html">Order Adam’s Lost Dominion</a>
+          </div>
+
+          <div class="footer-cols">
+            <div class="footer-col">
+              <h4>Explore</h4>
+              <a href="/book.html">The Book</a>
+              <a href="/catalog.html">Catalog</a>
+              <a href="/sample.html">Sample pages</a>
+              <a href="/reviews.html">Reviews</a>
+            </div>
+            <div class="footer-col">
+              <h4>About</h4>
+              <a href="/author.html">Howard Williams</a>
+              <a href="/contact.html">Contact</a>
+              <a href="/order.html">Order &amp; shipping</a>
+            </div>
+            <div class="footer-col">
+              <h4>Ordering</h4>
+              <p>Paperback · $19.99</p>
+              <p>2+ copies · $12.00 each</p>
+              <p>US Media Mail · $4.39</p>
+              <p>No international shipping</p>
+            </div>
           </div>
         </div>
-        <div class="footer-meta">
-          <p>US shipping · Media Mail · Printed paperback</p>
-          <p>© <span data-year></span> Howard Williams. All rights reserved.</p>
+
+        <div class="footer-trust">
+          <div class="trust-item">
+            <img src="/assets/icon-shipping.png" alt="" width="28" height="28" />
+            <span>Flat US shipping</span>
+          </div>
+          <div class="trust-item">
+            <img src="/assets/icon-bulk.png" alt="" width="28" height="28" />
+            <span>Church bulk pricing</span>
+          </div>
+          <div class="trust-item">
+            <img src="/assets/icon-sample.png" alt="" width="28" height="28" />
+            <span>Read before you buy</span>
+          </div>
+          <div class="trust-item">
+            <img src="/assets/icon-usa.png" alt="" width="28" height="28" />
+            <span>Ships nationwide</span>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© <span data-year></span> Howard Williams · Dominion Books. All rights reserved.</p>
+          <p class="footer-note">Printed paperback · PayPal checkout coming soon</p>
         </div>
       </div>
     `

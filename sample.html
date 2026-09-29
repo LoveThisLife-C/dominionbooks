@@ -23,18 +23,25 @@
 
     <main>
       <section class="page-hero">
-        <div class="page-hero-inner">
+        <div class="page-hero-media" aria-hidden="true">
+          <img src="/assets/hero-wonder-3.jpg" alt="" />
+          <div class="page-hero-veil"></div>
+        </div>
+        <div class="page-hero-inner reveal">
           <p class="eyebrow">Read before you buy</p>
           <h1>Sample pages</h1>
-          <p>Front and back covers, plus the introduction — enough to feel the voice of the book.</p>
+          <p>
+            Front and back covers, dedication, contents, acknowledgments, and the full introduction —
+            enough to hear Howard’s voice before you order.
+          </p>
         </div>
       </section>
 
       <section class="section">
         <div class="section-inner">
-          <div class="sample-viewer">
+          <div class="sample-viewer reveal">
             <button type="button" class="sample-nav prev" id="sample-prev" aria-label="Previous page">‹</button>
-            <div class="sample-stage">
+            <div class="sample-stage shine">
               <img id="sample-page" src="/assets/cover-front.jpg" alt="Sample page" />
             </div>
             <button type="button" class="sample-nav next" id="sample-next" aria-label="Next page">›</button>
@@ -43,8 +50,25 @@
             <span id="sample-label">Front cover</span>
             <div class="sample-dots" id="sample-dots" role="tablist" aria-label="Sample pages"></div>
           </div>
+
+          <div class="detail-grid reveal" style="margin-top: 2rem">
+            <div class="detail-card surface">
+              <span class="num">Covers</span>
+              <p>Front stained-glass art and the full back-cover blurb.</p>
+            </div>
+            <div class="detail-card surface">
+              <span class="num">Front matter</span>
+              <p>Title, copyright, dedication to Charleen, and contents.</p>
+            </div>
+            <div class="detail-card surface">
+              <span class="num">Introduction</span>
+              <p>The pastoral burden that opens the book — through page 13.</p>
+            </div>
+          </div>
+
           <div class="page-actions" style="margin-top: 2rem">
-            <a class="btn btn-primary" href="/order.html">Order the paperback</a>
+            <a class="btn btn-primary shine" href="/order.html">Order the paperback</a>
+            <a class="btn btn-outline" href="/book.html">Back to book details</a>
           </div>
         </div>
       </section>

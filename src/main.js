@@ -115,8 +115,67 @@ export function setupContact() {
   })
 }
 
+export function setupHeroSlideshow() {
+  const root = document.querySelector('[data-hero-slides]')
+  if (!root) return
+
+  const slides = [...root.querySelectorAll('.hero-slide')]
+  const dotsWrap = document.querySelector('[data-hero-dots]')
+  if (slides.length < 2) return
+
+  let index = 0
+  const show = (i) => {
+    index = (i + slides.length) % slides.length
+    slides.forEach((slide, si) => slide.classList.toggle('is-active', si === index))
+    if (dotsWrap) {
+      ;[...dotsWrap.children].forEach((dot, di) => {
+        dot.setAttribute('aria-current', di === index ? 'true' : 'false')
+      })
+    }
+  }
+
+  if (dotsWrap) {
+    slides.forEach((_, i) => {
+      const btn = document.createElement('button')
+      btn.type = 'button'
+      btn.setAttribute('aria-label', `Show hero image ${i + 1}`)
+      btn.addEventListener('click', () => show(i))
+      dotsWrap.appendChild(btn)
+    })
+  }
+
+  show(0)
+  window.setInterval(() => show(index + 1), 5500)
+}
+
+export function setupReveals() {
+  const items = document.querySelectorAll('.reveal')
+  if (!items.length) return
+
+  if (!('IntersectionObserver' in window)) {
+    items.forEach((el) => el.classList.add('is-in'))
+    return
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in')
+          io.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.16, rootMargin: '0px 0px -40px 0px' },
+  )
+
+  items.forEach((el) => io.observe(el))
+}
+
 export function boot(active) {
   mountChrome(active)
+  setupHeroSlideshow()
+  setupReveals()
   setupOrder()
   setupSample()
   setupContact()

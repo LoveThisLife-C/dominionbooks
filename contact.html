@@ -24,28 +24,45 @@
     <main>
       <section class="page-hero">
         <div class="page-hero-media" aria-hidden="true">
-          <img src="/assets/contact-desk.jpg" alt="" />
+          <img src="/assets/hero-wonder-3.jpg" alt="" />
           <div class="page-hero-veil"></div>
         </div>
-        <div class="page-hero-inner">
+        <div class="page-hero-inner reveal">
           <p class="eyebrow">Stay in touch</p>
           <h1>Send a message</h1>
-          <p>Questions about the book, bulk orders for your church, or shipping? Write Howard directly.</p>
+          <p>
+            Questions about the book, bulk orders for your church, or shipping? Write Howard directly —
+            every note is read.
+          </p>
         </div>
       </section>
 
       <section class="section">
         <div class="section-inner contact-grid">
-          <div class="surface surface-pad">
+          <div class="surface surface-pad reveal">
             <p class="eyebrow">Correspondence</p>
             <h2>We read every note</h2>
             <p>
-              Messages go straight to Howard’s inbox. For the fastest reply, include your order
-              quantity and shipping city if you are asking about fulfillment.
+              For the fastest reply, include your order quantity and shipping city if you are asking
+              about fulfillment. Church book tables and Sabbath School orders are welcome.
             </p>
+            <div class="detail-grid">
+              <div class="detail-card surface">
+                <span class="num">Orders</span>
+                <p>Pricing, quantity, and Media Mail questions.</p>
+              </div>
+              <div class="detail-card surface">
+                <span class="num">Churches</span>
+                <p>Bulk packs for classes and libraries.</p>
+              </div>
+              <div class="detail-card surface">
+                <span class="num">Testimony</span>
+                <p>Share how the book spoke to you.</p>
+              </div>
+            </div>
             <img class="inset-media" src="/assets/contact-desk.jpg" alt="Writing desk" />
           </div>
-          <form class="contact-form surface surface-pad" id="contact-form">
+          <form class="contact-form surface surface-pad reveal" id="contact-form">
             <label class="field">
               <span>Name</span>
               <input type="text" name="name" required autocomplete="name" />
@@ -58,7 +75,7 @@
               <span>Message</span>
               <textarea name="message" rows="6" required></textarea>
             </label>
-            <button type="submit" class="btn btn-primary btn-wide">Send message</button>
+            <button type="submit" class="btn btn-primary btn-wide shine">Send message</button>
             <p class="fine-print" id="contact-status" hidden></p>
           </form>
         </div>

@@ -23,9 +23,12 @@
 
     <main>
       <section class="hero" aria-label="Featured book">
-        <div class="hero-media" aria-hidden="true">
-          <img src="/assets/hero-bg.jpg" alt="" class="hero-cover" />
+        <div class="hero-media" data-hero-slides aria-hidden="true">
+          <img class="hero-slide is-active" src="/assets/hero-wonder-1.jpg" alt="" />
+          <img class="hero-slide" src="/assets/hero-wonder-2.jpg" alt="" />
+          <img class="hero-slide" src="/assets/hero-wonder-3.jpg" alt="" />
           <div class="hero-veil"></div>
+          <div class="hero-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
         </div>
         <div class="hero-copy">
           <p class="brand-lockup">Dominion Books</p>
@@ -34,30 +37,40 @@
             What Adam lost, Christ came to recover — a clear gospel path from Eden to the empty tomb.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/order.html">Order paperback — $19.99</a>
+            <a class="btn btn-primary shine" href="/order.html">Order paperback — $19.99</a>
             <a class="btn btn-ghost" href="/sample.html">Read a sample</a>
           </div>
+        </div>
+        <div class="hero-dots" data-hero-dots aria-label="Hero images"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner stat-row reveal">
+          <div class="stat surface"><strong>215</strong><span>Pages</span></div>
+          <div class="stat surface"><strong>$19.99</strong><span>Single copy</span></div>
+          <div class="stat surface"><strong>$12</strong><span>Each for 2+</span></div>
+          <div class="stat surface"><strong>$4.39</strong><span>US shipping</span></div>
         </div>
       </section>
 
       <section class="section">
         <div class="section-inner promise-grid">
-          <article class="promise surface surface-pad">
+          <article class="promise surface surface-pad reveal">
             <img src="/assets/icon-sample.png" alt="" width="56" height="56" />
             <h3>Read a sample</h3>
             <p>Covers and introduction online before you buy.</p>
           </article>
-          <article class="promise surface surface-pad">
+          <article class="promise surface surface-pad reveal">
             <img src="/assets/icon-bulk.png" alt="" width="56" height="56" />
             <h3>Bulk savings</h3>
             <p>$12 each when you order two or more copies.</p>
           </article>
-          <article class="promise surface surface-pad">
+          <article class="promise surface surface-pad reveal">
             <img src="/assets/icon-shipping.png" alt="" width="56" height="56" />
             <h3>Flat shipping</h3>
             <p>$4.39 Media Mail on every U.S. order.</p>
           </article>
-          <article class="promise surface surface-pad">
+          <article class="promise surface surface-pad reveal">
             <img src="/assets/icon-usa.png" alt="" width="56" height="56" />
             <h3>Ships in the U.S.</h3>
             <p>Printed paperbacks mailed anywhere in America.</p>
@@ -66,20 +79,35 @@
       </section>
 
       <section class="section">
-        <div class="section-inner home-band">
+        <div class="section-inner home-band reveal">
           <div>
             <p class="eyebrow">Now available</p>
             <h2>A book for the believer who longs for more than theory</h2>
             <p>
               Pastor Howard Williams traces the grand narrative of salvation from Eden to the empty
-              tomb — and why Christ won back the kingdom Adam lost.
+              tomb — and why Christ won back the kingdom Adam lost. Written for Seventh-day Adventist
+              readers and anyone hungry for a Spirit-filled life.
             </p>
-            <div class="page-actions">
+            <div class="detail-grid">
+              <div class="detail-card surface">
+                <span class="num">01</span>
+                <p>Everlasting gospel before end-time warnings</p>
+              </div>
+              <div class="detail-card surface">
+                <span class="num">02</span>
+                <p>Dominion recovered through Christ</p>
+              </div>
+              <div class="detail-card surface">
+                <span class="num">03</span>
+                <p>Assurance rooted in the Savior, not performance</p>
+              </div>
+            </div>
+            <div class="page-actions" style="margin-top: 1.5rem">
               <a class="btn btn-primary" href="/book.html">Explore the book</a>
               <a class="btn btn-outline" href="/catalog.html">View catalog</a>
             </div>
           </div>
-          <img src="/assets/still-life-book.jpg" alt="Editorial still life with a hardcover book" />
+          <img class="shine" src="/assets/still-life-book.jpg" alt="Editorial still life with a hardcover book" />
         </div>
       </section>
     </main>
