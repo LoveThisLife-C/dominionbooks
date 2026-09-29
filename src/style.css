@@ -1,18 +1,18 @@
 :root {
-  --ink: #141c28;
-  --ink-soft: #5a6578;
-  --paper: #f4f7f8;
-  --paper-2: #e8eef1;
-  --sea: #234f5e;
-  --sea-deep: #173844;
-  --gold: #b08a4b;
-  --gold-soft: #d2b27a;
-  --line: rgba(20, 28, 40, 0.1);
-  --line-strong: rgba(20, 28, 40, 0.16);
+  --ink: #0a0a0a;
+  --ink-soft: #525252;
+  --paper: #ffffff;
+  --paper-2: #f4f4f5;
+  --sea: #111111;
+  --sea-deep: #000000;
+  --gold: #b91c1c;
+  --gold-soft: #e11d48;
+  --line: rgba(0, 0, 0, 0.1);
+  --line-strong: rgba(0, 0, 0, 0.16);
   --white: #ffffff;
-  --surface: rgba(255, 255, 255, 0.86);
+  --surface: rgba(255, 255, 255, 0.92);
   --surface-solid: #ffffff;
-  --shadow: 0 18px 40px rgba(20, 28, 40, 0.08);
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
   --radius: 18px;
   --radius-sm: 12px;
   --font-display: "Instrument Serif", Georgia, serif;
@@ -38,9 +38,9 @@ body {
   font-family: var(--font-body);
   color: var(--ink);
   background:
-    radial-gradient(900px 420px at 8% -5%, rgba(35, 79, 94, 0.07), transparent 55%),
-    radial-gradient(800px 380px at 100% 0%, rgba(176, 138, 75, 0.08), transparent 50%),
-    linear-gradient(180deg, #f7fafb 0%, var(--paper) 45%, var(--paper-2) 100%);
+    radial-gradient(900px 420px at 8% -5%, rgba(185, 28, 28, 0.06), transparent 55%),
+    radial-gradient(800px 380px at 100% 0%, rgba(0, 0, 0, 0.04), transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, var(--paper) 50%, var(--paper-2) 100%);
   line-height: 1.65;
   font-size: 1.02rem;
   font-weight: 400;
@@ -88,7 +88,7 @@ main,
   align-items: center;
   gap: 1.25rem;
   padding: 0.85rem clamp(1.25rem, 4vw, 3rem);
-  background: rgba(247, 250, 251, 0.88);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
@@ -150,7 +150,7 @@ main,
   align-items: center;
   justify-content: center;
   padding: 0.65rem 1.15rem;
-  background: var(--sea);
+  background: var(--gold);
   color: var(--white);
   font-size: 0.88rem;
   font-weight: 700;
@@ -159,7 +159,7 @@ main,
 }
 
 .header-cta:hover {
-  background: var(--sea-deep);
+  background: var(--gold-soft);
   transform: translateY(-1px);
 }
 
@@ -209,8 +209,8 @@ main,
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(12, 22, 32, 0.86) 0%, rgba(12, 22, 32, 0.55) 48%, rgba(12, 22, 32, 0.22) 100%),
-    linear-gradient(0deg, rgba(12, 22, 32, 0.78) 0%, transparent 55%);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.58) 48%, rgba(0, 0, 0, 0.28) 100%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, transparent 55%);
 }
 
 .hero-copy {
@@ -241,14 +241,14 @@ main,
 
 .hero h1 {
   font-size: clamp(2.9rem, 7vw, 5.2rem);
-  color: #fffcf7;
+  color: #ffffff;
 }
 
 .hero-lede {
   margin: 0 0 1.75rem;
   max-width: 33rem;
   font-size: 1.08rem;
-  color: rgba(255, 252, 247, 0.9);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-actions,
@@ -279,7 +279,7 @@ main,
 
 .btn-primary {
   background: var(--gold);
-  color: #1a140c;
+  color: #ffffff;
 }
 
 .btn-primary:hover {
@@ -288,13 +288,13 @@ main,
 
 .btn-ghost {
   background: transparent;
-  border-color: rgba(255, 252, 247, 0.45);
+  border-color: rgba(255, 255, 255, 0.45);
   color: var(--white);
 }
 
 .btn-ghost:hover {
   border-color: var(--white);
-  background: rgba(255, 252, 247, 0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .btn-outline {
@@ -305,7 +305,7 @@ main,
 
 .btn-outline:hover {
   border-color: var(--sea);
-  background: rgba(35, 79, 94, 0.05);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .btn-wide {
@@ -333,7 +333,7 @@ main,
 .page-hero-veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(244, 247, 248, 0.94) 0%, rgba(244, 247, 248, 0.82) 48%, rgba(244, 247, 248, 0.55) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 48%, rgba(255, 255, 255, 0.58) 100%);
 }
 
 .page-hero-inner {
@@ -526,14 +526,14 @@ h3 {
 .text-link {
   color: var(--sea);
   font-weight: 700;
-  border-bottom: 1px solid rgba(35, 79, 94, 0.3);
+  border-bottom: 1px solid rgba(185, 28, 28, 0.35);
 }
 
 .soon-tag {
   display: inline-flex;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  background: rgba(176, 138, 75, 0.12);
+  background: rgba(185, 28, 28, 0.1);
   color: var(--gold);
   font-size: 0.75rem;
   font-weight: 700;
@@ -574,7 +574,7 @@ h3 {
 .field textarea {
   width: 100%;
   border: 1px solid var(--line-strong);
-  background: rgba(255, 252, 247, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   border-radius: var(--radius-sm);
   padding: 0.85rem 1rem;
   color: var(--ink);
@@ -585,7 +585,7 @@ h3 {
 .field input:focus,
 .field textarea:focus {
   border-color: var(--sea);
-  box-shadow: 0 0 0 3px rgba(35, 79, 94, 0.12);
+  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.14);
 }
 
 .totals {
@@ -755,11 +755,11 @@ h3 {
 .site-footer {
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(255, 252, 247, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: clamp(3.5rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3rem) 2rem;
   background:
-    linear-gradient(160deg, #122633 0%, #1a3a48 48%, #0f1f29 100%);
-  color: rgba(255, 252, 247, 0.78);
+    linear-gradient(160deg, #000000 0%, #111111 48%, #0a0a0a 100%);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .footer-glow {
@@ -767,7 +767,7 @@ h3 {
   inset: -20% auto auto 30%;
   width: 50%;
   height: 60%;
-  background: radial-gradient(circle, rgba(176, 138, 75, 0.22), transparent 70%);
+  background: radial-gradient(circle, rgba(185, 28, 28, 0.28), transparent 70%);
   pointer-events: none;
 }
 
@@ -783,7 +783,7 @@ h3 {
   grid-template-columns: 1.15fr 1.35fr;
   gap: clamp(2rem, 5vw, 3.5rem);
   padding-bottom: 2.25rem;
-  border-bottom: 1px solid rgba(255, 252, 247, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-brand {
@@ -802,7 +802,7 @@ h3 {
 
 .footer-inner .brand-name {
   margin: 0 0 0.2rem;
-  color: #fffcf7;
+  color: #ffffff;
   font-size: 1.7rem;
 }
 
@@ -816,7 +816,7 @@ h3 {
 .footer-blurb {
   margin: 0 0 1.25rem;
   max-width: 34rem;
-  color: rgba(255, 252, 247, 0.72);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .footer-cta {
@@ -834,14 +834,14 @@ h3 {
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 400;
-  color: #fffcf7;
+  color: #ffffff;
 }
 
 .footer-col a,
 .footer-col p {
   display: block;
   margin: 0 0 0.55rem;
-  color: rgba(255, 252, 247, 0.7);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.95rem;
 }
 
@@ -854,7 +854,7 @@ h3 {
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   padding: 1.6rem 0;
-  border-bottom: 1px solid rgba(255, 252, 247, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .trust-item {
@@ -862,12 +862,12 @@ h3 {
   align-items: center;
   gap: 0.65rem;
   padding: 0.75rem 0.85rem;
-  border: 1px solid rgba(255, 252, 247, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-sm);
-  background: rgba(255, 252, 247, 0.04);
+  background: rgba(255, 255, 255, 0.04);
   font-size: 0.88rem;
   font-weight: 600;
-  color: rgba(255, 252, 247, 0.88);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .trust-item img {
@@ -884,11 +884,11 @@ h3 {
   gap: 0.75rem;
   padding-top: 1.25rem;
   font-size: 0.88rem;
-  color: rgba(255, 252, 247, 0.55);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .footer-note {
-  color: rgba(210, 178, 122, 0.75);
+  color: rgba(225, 29, 72, 0.8);
 }
 
 .home-band {
@@ -978,7 +978,7 @@ h3 {
   height: 0.55rem;
   border: 0;
   border-radius: 999px;
-  background: rgba(255, 252, 247, 0.35);
+  background: rgba(255, 255, 255, 0.35);
   cursor: pointer;
   padding: 0;
   transition: width 0.3s var(--ease), background 0.3s;
@@ -1007,7 +1007,7 @@ h3 {
 .surface:hover {
   transform: translateY(-4px);
   box-shadow: 0 24px 48px rgba(20, 28, 40, 0.12);
-  border-color: rgba(176, 138, 75, 0.35);
+  border-color: rgba(185, 28, 28, 0.35);
 }
 
 .shine {
@@ -1019,7 +1019,7 @@ h3 {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, transparent 30%, rgba(255, 252, 247, 0.28) 48%, transparent 65%);
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.28) 48%, transparent 65%);
   transform: translateX(-120%);
   animation: shine-sweep 5.5s ease-in-out infinite;
   pointer-events: none;
@@ -1216,7 +1216,7 @@ h3 {
     left: 0;
     right: 0;
     padding: 1.1rem 1.25rem 1.4rem;
-    background: rgba(247, 250, 251, 0.98);
+    background: rgba(255, 255, 255, 0.98);
     border-bottom: 1px solid var(--line);
     gap: 0.85rem;
   }
