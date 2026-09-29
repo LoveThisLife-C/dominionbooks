@@ -1,4 +1,4 @@
-# Shared PayPal + pricing helpers for Vercel serverless routes
+// Shared PayPal + pricing helpers for Vercel serverless routes
 
 export const PRICE_SINGLE = 19.99
 export const PRICE_BULK = 12.0
