@@ -107,10 +107,24 @@ export function setupOrder() {
   const initPaypal = async () => {
     try {
       const cfgRes = await fetch('/api/paypal-config')
-      const cfg = await cfgRes.json()
+      const raw = await cfgRes.text()
+      let cfg
+      try {
+        cfg = JSON.parse(raw)
+      } catch {
+        throw new Error(
+          'Checkout API is not running. Use the deployed Vercel site, or restart with npm run dev after the latest update.',
+        )
+      }
       if (!cfg.configured || !cfg.clientId) {
-        if (statusEl) statusEl.textContent = 'PayPal merchant credentials are not connected yet.'
-        if (fallbackBtn) fallbackBtn.hidden = false
+        if (statusEl) {
+          statusEl.textContent =
+            'PayPal is not connected yet — waiting for Howard’s Client ID & Secret on Vercel.'
+        }
+        if (fallbackBtn) {
+          fallbackBtn.hidden = false
+          fallbackBtn.textContent = 'PayPal credentials not connected yet'
+        }
         return
       }
 
@@ -183,10 +197,14 @@ export function setupOrder() {
         .render('#paypal-buttons')
     } catch (err) {
       console.error(err)
-      if (statusEl) statusEl.textContent = 'Checkout unavailable right now.'
+      if (statusEl) {
+        statusEl.textContent =
+          err.message ||
+          'Checkout unavailable until PayPal credentials are added on Vercel.'
+      }
       if (fallbackBtn) {
         fallbackBtn.hidden = false
-        fallbackBtn.textContent = 'Checkout temporarily unavailable'
+        fallbackBtn.textContent = 'PayPal not connected yet'
       }
       showError(err.message || 'Could not initialize PayPal')
     }

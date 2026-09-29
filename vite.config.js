@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import paypalApiPlugin from './vite-paypal-api.js'
 
 const root = dirname(fileURLToPath(import.meta.url))
 
@@ -18,6 +19,7 @@ const pages = [
 ]
 
 export default defineConfig({
+  plugins: [paypalApiPlugin()],
   server: {
     port: 5173,
     open: false,
