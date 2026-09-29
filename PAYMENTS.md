@@ -43,10 +43,18 @@ Redeploy after saving env vars.
 3. Set `PAYPAL_MODE=live`
 4. Redeploy
 
-## Local API note
+## Troubleshooting
 
-`/api/*` runs on Vercel. For local end-to-end testing use:
+**“Could not load PayPal SDK” / Client ID not recognized**
 
-```bash
-npx vercel dev
-```
+PayPal rejected the Client ID currently on Vercel (`…esnW2` — too short / invalid).
+
+1. Open [PayPal Developer → Apps](https://developer.paypal.com/dashboard/applications)
+2. Open the **Dominion Books** app
+3. Toggle **Live** (or Sandbox — match `PAYPAL_MODE`)
+4. Copy the **full** Client ID (usually ~80 characters) and Secret
+5. Vercel → Settings → Environment Variables → update `PAYPAL_CLIENT_ID` and `PAYPAL_CLIENT_SECRET`
+6. Set `PAYPAL_MODE` to `live` or `sandbox` to match those credentials
+7. **Redeploy** the project
+
+Do not paste truncated IDs from chat or screenshots.

@@ -100,7 +100,12 @@ export function setupOrder() {
       const s = document.createElement('script')
       s.src = src
       s.onload = () => resolve()
-      s.onerror = () => reject(new Error('Could not load PayPal SDK'))
+      s.onerror = () =>
+        reject(
+          new Error(
+            'Could not load PayPal SDK. Check that the full Client ID is set on Vercel (not truncated).',
+          ),
+        )
       document.head.appendChild(s)
     })
 
@@ -128,12 +133,25 @@ export function setupOrder() {
         return
       }
 
-      const sdk = `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(
+      // Live Client IDs are long (~80 chars). Short values are almost always truncated.
+      if (String(cfg.clientId).length < 40) {
+        throw new Error(
+          'PayPal Client ID looks incomplete. Re-copy the full Client ID from developer.paypal.com → Your app → Live, then update PAYPAL_CLIENT_ID on Vercel and redeploy.',
+        )
+      }
+
+      const sdkHost =
+        cfg.mode === 'live' ? 'https://www.paypal.com' : 'https://www.paypal.com'
+      const sdk = `${sdkHost}/sdk/js?client-id=${encodeURIComponent(
         cfg.clientId,
       )}&currency=USD&intent=capture&components=buttons`
       await loadScript(sdk)
 
-      if (!window.paypal) throw new Error('PayPal SDK unavailable')
+      if (!window.paypal) {
+        throw new Error(
+          'PayPal SDK did not start. Confirm Client ID + Secret match the same app (Live or Sandbox) and PAYPAL_MODE matches.',
+        )
+      }
 
       if (statusEl) statusEl.hidden = true
       if (buttonsEl) buttonsEl.hidden = false
@@ -198,13 +216,11 @@ export function setupOrder() {
     } catch (err) {
       console.error(err)
       if (statusEl) {
-        statusEl.textContent =
-          err.message ||
-          'Checkout unavailable until PayPal credentials are added on Vercel.'
+        statusEl.textContent = err.message || 'Checkout unavailable.'
       }
       if (fallbackBtn) {
         fallbackBtn.hidden = false
-        fallbackBtn.textContent = 'PayPal not connected yet'
+        fallbackBtn.textContent = 'Fix PayPal credentials on Vercel'
       }
       showError(err.message || 'Could not initialize PayPal')
     }
