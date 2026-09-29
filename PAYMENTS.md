@@ -22,8 +22,8 @@ Project → Settings → Environment Variables:
 | `PAYPAL_CLIENT_ID` | from PayPal |
 | `PAYPAL_CLIENT_SECRET` | from PayPal |
 | `PAYPAL_MODE` | `sandbox` then `live` |
-| `ORDER_NOTIFY_EMAIL` | optional — Howard’s email |
-| `RESEND_API_KEY` | optional — for order emails |
+| `ORDER_NOTIFY_EMAIL` | `pastorhlw@gmail.com` (order + contact alerts) |
+| `RESEND_API_KEY` | optional — for order/contact emails via Resend |
 | `ORDER_NOTIFY_FROM` | optional — verified Resend from-address |
 | `SITE_URL` | optional — production URL |
 

@@ -8,7 +8,7 @@ The website is ready for live orders. To turn on PayPal checkout so buyers can p
 
 **1. PayPal Business account**
 - Please confirm you have (or can create) a PayPal Business account that should receive book payments.
-- Preferred login email for that account: _______________
+- Preferred login email for that account (if different from pastorhlw@gmail.com): _______________
 
 **2. PayPal Developer credentials** (I can walk you through this on a call if easier)
 1. Go to https://developer.paypal.com/dashboard/applications and sign in with that Business account
@@ -16,8 +16,8 @@ The website is ready for live orders. To turn on PayPal checkout so buyers can p
 3. Send me the **Client ID** and **Secret** for Sandbox first (for a test purchase)
 4. Later we’ll switch the same steps to **Live** for real money
 
-**3. Order notifications**
-- Email address that should receive each new paid order (name, qty, ship-to address): _______________
+**3. Order + contact notifications**
+- Using **pastorhlw@gmail.com** for paid-order alerts and contact-form messages — correct?
 
 **4. Quick confirmations**
 - Pricing stays: $19.99 single · $12 each for 2+ · $4.39 flat US Media Mail — correct?

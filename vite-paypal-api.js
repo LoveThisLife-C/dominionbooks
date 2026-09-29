@@ -39,6 +39,7 @@ function paypalApiPlugin() {
           '/api/paypal-config': './api/paypal-config.js',
           '/api/create-order': './api/create-order.js',
           '/api/capture-order': './api/capture-order.js',
+          '/api/contact': './api/contact.js',
         }
         const rel = map[url]
         if (!rel) return next()

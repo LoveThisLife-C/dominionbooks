@@ -2067,3 +2067,16 @@ a.promise:hover {
     transform: none;
   }
 }
+
+
+.contact-email {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.contact-email a {
+  color: var(--crimson, #B91C1C);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  word-break: break-all;
+}

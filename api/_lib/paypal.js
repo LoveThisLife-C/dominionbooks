@@ -98,11 +98,9 @@ export function siteOrigin(req) {
   return process.env.SITE_URL || `${proto}://${host}`
 }
 
-export async function notifyOrder(payload) {
-  const to = process.env.ORDER_NOTIFY_EMAIL
-  const key = process.env.RESEND_API_KEY
-  if (!to || !key) return { skipped: true }
+import { sendMail } from './mail.js'
 
+export async function notifyOrder(payload) {
   const lines = [
     `New Dominion Books order`,
     ``,
@@ -121,18 +119,9 @@ export async function notifyOrder(payload) {
     .filter(Boolean)
     .join('\n')
 
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${key}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: process.env.ORDER_NOTIFY_FROM || 'Dominion Books <onboarding@resend.dev>',
-      to: [to],
-      subject: `Order: ${payload.quantity}× Adam's Lost Dominion ($${payload.total})`,
-      text: lines,
-    }),
+  return sendMail({
+    subject: `Order: ${payload.quantity}× Adam's Lost Dominion ($${payload.total})`,
+    text: lines,
+    replyTo: payload.email || undefined,
   })
-  return { ok: res.ok, status: res.status }
 }

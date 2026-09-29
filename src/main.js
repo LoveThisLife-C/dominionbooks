@@ -293,16 +293,57 @@ export function setupSample() {
   show(0)
 }
 
+const HOWARD_EMAIL = 'pastorhlw@gmail.com'
+
+function openMailtoContact({ name, email, message }) {
+  const subject = encodeURIComponent(`Dominion Books contact — ${name}`)
+  const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`)
+  window.location.href = `mailto:${HOWARD_EMAIL}?subject=${subject}&body=${body}`
+}
+
 export function setupContact() {
   const form = document.querySelector('#contact-form')
   if (!form) return
   const status = document.querySelector('#contact-status')
-  form.addEventListener('submit', (e) => {
+  const submitBtn = form.querySelector('[type="submit"]')
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault()
+    const data = new FormData(form)
+    const payload = {
+      name: String(data.get('name') || '').trim(),
+      email: String(data.get('email') || '').trim(),
+      message: String(data.get('message') || '').trim(),
+    }
+
     status.hidden = false
-    status.textContent =
-      'Thanks — your message is ready. Email delivery will be wired when hosting is live.'
-    form.reset()
+    status.textContent = 'Sending…'
+    if (submitBtn) submitBtn.disabled = true
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const out = await res.json().catch(() => ({}))
+
+      if (res.ok && out.delivered) {
+        status.textContent = 'Thank you — your message was sent to Howard.'
+        form.reset()
+        return
+      }
+
+      // No Resend key yet, or API unavailable — open the visitor’s mail app.
+      openMailtoContact(payload)
+      status.textContent = `Opening your email app to write ${HOWARD_EMAIL}…`
+      form.reset()
+    } catch {
+      openMailtoContact(payload)
+      status.textContent = `Opening your email app to write ${HOWARD_EMAIL}…`
+    } finally {
+      if (submitBtn) submitBtn.disabled = false
+    }
   })
 }
 
