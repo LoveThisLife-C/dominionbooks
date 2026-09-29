@@ -601,15 +601,27 @@ h3 {
 }
 
 .promise {
-  text-align: center;
+  text-align: left;
   padding: 1.35rem 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+a.promise:hover {
+  transform: translateY(-4px);
 }
 
 .promise img {
-  width: 3.1rem;
-  height: 3.1rem;
-  margin: 0 auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0 0 0.85rem;
   object-fit: contain;
+}
+
+.promise h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.2rem;
 }
 
 .promise p {
@@ -617,6 +629,141 @@ h3 {
   font-size: 0.92rem;
   color: var(--ink-soft);
 }
+
+.highlights-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(3.5rem, 8vw, 5.5rem);
+  padding-bottom: clamp(3.5rem, 8vw, 5.5rem);
+  background:
+    linear-gradient(180deg, #0a0a0a 0%, #141414 48%, #0d0d0d 100%);
+  color: #fff;
+}
+
+.highlights-section .eyebrow {
+  color: var(--gold-soft);
+}
+
+.highlights-section h2 {
+  color: #fff;
+  max-width: 22ch;
+}
+
+.highlights-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.highlights-head {
+  margin-bottom: 1.75rem;
+}
+
+.highlights-section .stat-row {
+  margin-block: 0 1.35rem;
+}
+
+.highlights-section .stat {
+  padding: 1.25rem 1rem;
+  border-radius: 4px;
+}
+
+.highlights-section .stat.box-ink {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.highlights-section .stat.box-red {
+  background: linear-gradient(160deg, rgba(185, 28, 28, 0.35), rgba(185, 28, 28, 0.12));
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.highlights-section .stat.box-frame {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  outline: 1px solid rgba(255, 255, 255, 0.2);
+  outline-offset: 4px;
+}
+
+.highlights-section .stat strong {
+  color: #fff;
+  font-size: clamp(1.55rem, 3vw, 1.95rem);
+}
+
+.highlights-section .stat span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.highlights-section .promise.box-stack {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--ink);
+  border-top-color: var(--gold);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.highlights-section .promise.box-stack:hover {
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.36);
+}
+
+/* Gospel light — dawn / restored dominion atmosphere */
+.gospel-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: -10% -5%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.gospel-core {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: min(70vw, 720px);
+  height: min(70vw, 720px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 220, 170, 0.22) 0%, rgba(185, 28, 28, 0.16) 28%, transparent 68%);
+  animation: gospel-pulse 9s ease-in-out infinite;
+  filter: blur(8px);
+}
+
+.gospel-ray {
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  width: 2px;
+  height: 120%;
+  transform-origin: 50% 30%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 214, 160, 0.18) 22%,
+    rgba(185, 28, 28, 0.12) 55%,
+    transparent 100%
+  );
+  animation: gospel-ray-spin 28s linear infinite;
+}
+
+.gospel-ray:nth-child(1) { transform: translateX(-50%) rotate(-18deg); animation-delay: 0s; }
+.gospel-ray:nth-child(2) { transform: translateX(-50%) rotate(8deg); width: 3px; animation-duration: 36s; animation-direction: reverse; }
+.gospel-ray:nth-child(3) { transform: translateX(-50%) rotate(32deg); opacity: 0.7; animation-duration: 42s; }
+
+.gospel-mote {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 230, 190, 0.75);
+  box-shadow: 0 0 12px rgba(255, 200, 140, 0.55);
+  animation: gospel-mote 11s ease-in-out infinite;
+}
+
+.gospel-mote:nth-child(5) { left: 12%; top: 70%; animation-delay: 0s; }
+.gospel-mote:nth-child(6) { left: 28%; top: 35%; width: 4px; height: 4px; animation-delay: 1.4s; }
+.gospel-mote:nth-child(7) { left: 55%; top: 22%; animation-delay: 2.2s; }
+.gospel-mote:nth-child(8) { left: 72%; top: 48%; width: 6px; height: 6px; animation-delay: 0.8s; }
+.gospel-mote:nth-child(9) { left: 84%; top: 68%; animation-delay: 3s; }
+.gospel-mote:nth-child(10) { left: 40%; top: 78%; width: 3px; height: 3px; animation-delay: 1.8s; }
 
 .feature-split {
   display: grid;
@@ -1321,6 +1468,26 @@ h3 {
   animation-delay: 2.2s;
 }
 
+.hero-gospel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-gospel .gospel-core {
+  top: 55%;
+  opacity: 0.7;
+  background:
+    radial-gradient(circle, rgba(255, 214, 160, 0.2) 0%, rgba(185, 28, 28, 0.14) 32%, transparent 70%);
+}
+
+.hero-gospel .gospel-mote:nth-child(2) { left: 16%; top: 62%; }
+.hero-gospel .gospel-mote:nth-child(3) { left: 34%; top: 40%; animation-delay: 1.2s; }
+.hero-gospel .gospel-mote:nth-child(4) { left: 68%; top: 36%; animation-delay: 2s; }
+.hero-gospel .gospel-mote:nth-child(5) { left: 78%; top: 70%; animation-delay: 0.6s; }
+
 .hero-dots {
   position: relative;
   z-index: 3;
@@ -1553,6 +1720,42 @@ h3 {
   }
 }
 
+@keyframes gospel-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+@keyframes gospel-ray-spin {
+  from {
+    filter: brightness(0.85);
+  }
+  50% {
+    filter: brightness(1.25);
+  }
+  to {
+    filter: brightness(0.85);
+  }
+}
+
+@keyframes gospel-mote {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate3d(10px, -28px, 0);
+    opacity: 0.95;
+  }
+}
+
 @keyframes shine-sweep {
   0%,
   55% {
@@ -1661,7 +1864,10 @@ h3 {
   .hero-slide,
   .hero-copy,
   .shine::after,
-  .hero-orbs span {
+  .hero-orbs span,
+  .gospel-core,
+  .gospel-ray,
+  .gospel-mote {
     animation: none;
   }
 
