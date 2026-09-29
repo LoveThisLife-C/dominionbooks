@@ -224,7 +224,7 @@ main,
   z-index: 1;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.58) 48%, rgba(0, 0, 0, 0.28) 100%),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.78) 0%, transparent 55%);
+    linear-gradient(0deg, #0a0a0a 0%, rgba(0, 0, 0, 0.72) 28%, transparent 62%);
 }
 
 .hero-content-wrap {
@@ -602,7 +602,7 @@ h3 {
 
 .promise {
   text-align: left;
-  padding: 1.35rem 1rem;
+  padding: 1.45rem 1.25rem 1.55rem;
   text-decoration: none;
   color: inherit;
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
@@ -630,10 +630,47 @@ a.promise:hover {
   color: var(--ink-soft);
 }
 
+/* Soft overlap: hero flows into paperback details */
+.hero {
+  margin-bottom: -1px;
+}
+
+.section-wave {
+  position: relative;
+  z-index: 3;
+  line-height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.section-wave svg {
+  display: block;
+  width: 100%;
+  height: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.section-wave-down {
+  margin-top: -2.75rem;
+  background: transparent;
+}
+
+.section-wave-down path {
+  fill: #0a0a0a;
+}
+
+.section-wave-up {
+  margin-bottom: -1px;
+  background: #0d0d0d;
+}
+
+.section-wave-up path {
+  fill: #ffffff;
+}
+
 .highlights-section {
   position: relative;
   overflow: hidden;
-  padding-top: clamp(3.5rem, 8vw, 5.5rem);
+  padding-top: clamp(2.25rem, 5vw, 3.5rem);
   padding-bottom: clamp(3.5rem, 8vw, 5.5rem);
   background:
     linear-gradient(180deg, #0a0a0a 0%, #141414 48%, #0d0d0d 100%);
@@ -646,7 +683,15 @@ a.promise:hover {
 
 .highlights-section h2 {
   color: #fff;
-  max-width: 22ch;
+  max-width: 16ch;
+  margin-bottom: 0.65rem;
+}
+
+.highlights-lede {
+  margin: 0;
+  max-width: 36rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.05rem;
 }
 
 .highlights-panel {
@@ -655,33 +700,24 @@ a.promise:hover {
 }
 
 .highlights-head {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.85rem;
 }
 
 .highlights-section .stat-row {
-  margin-block: 0 1.35rem;
+  margin-block: 0 1.5rem;
+  gap: 1rem;
 }
 
 .highlights-section .stat {
-  padding: 1.25rem 1rem;
-  border-radius: 4px;
+  padding: 1.45rem 1.1rem 1.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
 }
 
-.highlights-section .stat.box-ink {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.highlights-section .stat.box-red {
-  background: linear-gradient(160deg, rgba(185, 28, 28, 0.35), rgba(185, 28, 28, 0.12));
-  border-color: rgba(255, 255, 255, 0.16);
-}
-
-.highlights-section .stat.box-frame {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  outline: 1px solid rgba(255, 255, 255, 0.2);
-  outline-offset: 4px;
+.highlights-section .stat.accent {
+  background: linear-gradient(160deg, rgba(185, 28, 28, 0.42), rgba(185, 28, 28, 0.14));
+  border-color: rgba(255, 180, 180, 0.28);
 }
 
 .highlights-section .stat strong {
@@ -693,15 +729,48 @@ a.promise:hover {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.highlights-section .promise.box-stack {
-  background: rgba(255, 255, 255, 0.96);
-  color: var(--ink);
-  border-top-color: var(--gold);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+/* Organic, non-square shells */
+.shape-blob-a {
+  border-radius: 42% 58% 48% 52% / 52% 42% 58% 48%;
+}
+.shape-blob-b {
+  border-radius: 58% 42% 55% 45% / 45% 58% 42% 55%;
+}
+.shape-blob-c {
+  border-radius: 48% 52% 40% 60% / 60% 40% 55% 45%;
+}
+.shape-blob-d {
+  border-radius: 55% 45% 58% 42% / 42% 55% 45% 58%;
 }
 
-.highlights-section .promise.box-stack:hover {
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.36);
+.shape-soft-a,
+.shape-soft-b,
+.shape-soft-c,
+.shape-soft-d {
+  background: rgba(255, 255, 255, 0.97);
+  color: var(--ink);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  border: 0;
+}
+
+.shape-soft-a {
+  border-radius: 1.75rem 2.75rem 1.5rem 2.4rem;
+}
+.shape-soft-b {
+  border-radius: 2.6rem 1.4rem 2.5rem 1.7rem;
+}
+.shape-soft-c {
+  border-radius: 1.5rem 2.2rem 2.8rem 1.35rem;
+}
+.shape-soft-d {
+  border-radius: 2.4rem 1.6rem 1.45rem 2.7rem;
+}
+
+.highlights-section .promise.shape-soft-a:hover,
+.highlights-section .promise.shape-soft-b:hover,
+.highlights-section .promise.shape-soft-c:hover,
+.highlights-section .promise.shape-soft-d:hover {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.36);
 }
 
 /* Gospel light — dawn / restored dominion atmosphere */
