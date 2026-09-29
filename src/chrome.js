@@ -14,22 +14,24 @@ export function mountChrome(active = 'home') {
 
   if (header) {
     header.innerHTML = `
-      <a class="brand" href="/" aria-label="Dominion Books home">
-        <img class="brand-mark" src="/assets/brand-mark.png" alt="" width="36" height="36" />
-        <span class="brand-name">Dominion Books</span>
-      </a>
-      <nav class="nav" aria-label="Primary">
-        ${links
-          .map(
-            (l) =>
-              `<a href="${l.href}" class="${l.id === active ? 'is-active' : ''}">${l.label}</a>`,
-          )
-          .join('')}
-      </nav>
-      <a class="header-cta" href="/order.html">Order</a>
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span>
-      </button>
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Dominion Books home">
+          <img class="brand-mark" src="/assets/brand-mark.png" alt="" width="36" height="36" />
+          <span class="brand-name">Dominion Books</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          ${links
+            .map(
+              (l) =>
+                `<a href="${l.href}" class="${l.id === active ? 'is-active' : ''}">${l.label}</a>`,
+            )
+            .join('')}
+        </nav>
+        <a class="header-cta" href="/order.html">Order</a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
     `
     const toggle = header.querySelector('.nav-toggle')
     toggle?.addEventListener('click', () => {
