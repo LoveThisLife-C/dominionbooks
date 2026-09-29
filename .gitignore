@@ -1,0 +1,14 @@
+# Dependencies
+node_modules
+
+# Build
+dist
+
+# Local
+.DS_Store
+*.log
+
+# Source manuscripts (extracted assets live in public/assets)
+*.pdf
+*Bulletin Insert*
+Adam's Lost Dominion Bulletin Insert*
