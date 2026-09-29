@@ -172,10 +172,27 @@ export function setupReveals() {
   items.forEach((el) => io.observe(el))
 }
 
+export function setupButtonEffects() {
+  document.querySelectorAll('.btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const rect = btn.getBoundingClientRect()
+      const ripple = document.createElement('span')
+      const size = Math.max(rect.width, rect.height)
+      ripple.className = 'btn-ripple'
+      ripple.style.width = ripple.style.height = `${size}px`
+      ripple.style.left = `${e.clientX - rect.left - size / 2}px`
+      ripple.style.top = `${e.clientY - rect.top - size / 2}px`
+      btn.appendChild(ripple)
+      window.setTimeout(() => ripple.remove(), 650)
+    })
+  })
+}
+
 export function boot(active) {
   mountChrome(active)
   setupHeroSlideshow()
   setupReveals()
+  setupButtonEffects()
   setupOrder()
   setupSample()
   setupContact()
