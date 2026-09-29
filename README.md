@@ -9,6 +9,12 @@ npm install
 npm run dev
 ```
 
+For PayPal API routes locally:
+
+```bash
+npx vercel dev
+```
+
 ## Build
 
 ```bash
@@ -25,3 +31,9 @@ npm run preview
 5. Deploy.
 
 Clean URLs are enabled (`/book` works alongside `/book.html`).
+
+## Payments
+
+Checkout is implemented (PayPal Orders API + shipping form).  
+Add credentials on Vercel — see `PAYMENTS.md` and `.env.example`.  
+Message to send Howard: `HOWARD-PAYPAL-REQUEST.md`.

@@ -113,7 +113,7 @@ export function mountChrome(active = 'home') {
 
         <div class="footer-bottom">
           <p>© <span data-year></span> Howard Williams · Dominion Books. All rights reserved.</p>
-          <p class="footer-note">Printed paperback · PayPal checkout coming soon</p>
+          <p class="footer-note">Printed paperback · PayPal checkout ready when connected</p>
         </div>
       </div>
     `

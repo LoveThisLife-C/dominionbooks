@@ -54,23 +54,75 @@
             </div>
             <img class="order-visual shine" src="/assets/product-book.jpg" alt="Paperback product photograph" />
           </div>
+
           <form class="order-form box-soft box-pad reveal" id="order-form">
+            <p class="eyebrow">Your order</p>
+            <h2>Checkout</h2>
+
             <label class="field">
               <span>Quantity</span>
-              <input type="number" name="qty" id="qty" min="1" max="50" value="1" />
+              <input type="number" name="qty" id="qty" min="1" max="50" value="1" required />
             </label>
+
             <div class="totals" aria-live="polite">
               <div><span>Books</span><strong id="books-total">$19.99</strong></div>
               <div><span>Shipping</span><strong id="ship-total">$4.39</strong></div>
               <div class="grand"><span>Total</span><strong id="grand-total">$24.38</strong></div>
             </div>
             <p class="price-note" id="price-note">Single-copy price · $19.99 each</p>
-            <button type="submit" class="btn btn-primary btn-wide" id="checkout-btn">
-              Continue to PayPal
+
+            <p class="eyebrow" style="margin-top: 1.25rem">Ship to (United States)</p>
+            <label class="field">
+              <span>Full name</span>
+              <input type="text" name="name" id="ship-name" required autocomplete="name" />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" id="ship-email" required autocomplete="email" />
+            </label>
+            <label class="field">
+              <span>Phone (optional)</span>
+              <input type="tel" name="phone" id="ship-phone" autocomplete="tel" />
+            </label>
+            <label class="field">
+              <span>Address line 1</span>
+              <input type="text" name="address1" id="ship-address1" required autocomplete="address-line1" />
+            </label>
+            <label class="field">
+              <span>Address line 2</span>
+              <input type="text" name="address2" id="ship-address2" autocomplete="address-line2" />
+            </label>
+            <div class="field-row">
+              <label class="field">
+                <span>City</span>
+                <input type="text" name="city" id="ship-city" required autocomplete="address-level2" />
+              </label>
+              <label class="field">
+                <span>State</span>
+                <input
+                  type="text"
+                  name="state"
+                  id="ship-state"
+                  required
+                  maxlength="2"
+                  placeholder="OR"
+                  autocomplete="address-level1"
+                />
+              </label>
+              <label class="field">
+                <span>ZIP</span>
+                <input type="text" name="zip" id="ship-zip" required autocomplete="postal-code" />
+              </label>
+            </div>
+
+            <p class="fine-print" id="paypal-status">Loading secure checkout…</p>
+            <div id="paypal-buttons" class="paypal-buttons" hidden></div>
+            <button type="button" class="btn btn-outline btn-wide" id="checkout-fallback" hidden>
+              PayPal not configured yet
             </button>
+            <p class="fine-print" id="checkout-error" hidden></p>
             <p class="fine-print">
-              PayPal checkout coming next — card, PayPal, and Venmo supported once the merchant
-              account is connected.
+              Pay with PayPal, card, or Venmo (when enabled on the merchant account). US shipping only.
             </p>
           </form>
         </div>

@@ -988,6 +988,22 @@ a.promise:hover {
   margin-bottom: 0.85rem;
 }
 
+.field-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr 0.8fr;
+  gap: 0.75rem;
+}
+
+.paypal-buttons {
+  margin: 0.75rem 0 0.5rem;
+  min-height: 3rem;
+}
+
+#checkout-error:not([hidden]) {
+  color: var(--gold);
+  font-weight: 600;
+}
+
 .field span {
   font-size: 0.78rem;
   font-weight: 700;
@@ -1898,7 +1914,8 @@ a.promise:hover {
   .footer-top,
   .detail-grid,
   .stat-row,
-  .footer-trust {
+  .footer-trust,
+  .field-row {
     grid-template-columns: 1fr;
   }
 

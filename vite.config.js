@@ -13,6 +13,8 @@ const pages = [
   'author',
   'contact',
   'order',
+  'order-success',
+  'order-cancel',
 ]
 
 export default defineConfig({

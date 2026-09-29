@@ -35,6 +35,16 @@ export function setupOrder() {
   const grandTotal = document.querySelector('#grand-total')
   const priceNote = document.querySelector('#price-note')
   const form = document.querySelector('#order-form')
+  const statusEl = document.querySelector('#paypal-status')
+  const buttonsEl = document.querySelector('#paypal-buttons')
+  const fallbackBtn = document.querySelector('#checkout-fallback')
+  const errorEl = document.querySelector('#checkout-error')
+
+  const showError = (msg) => {
+    if (!errorEl) return
+    errorEl.hidden = !msg
+    errorEl.textContent = msg || ''
+  }
 
   const recalc = () => {
     const qty = Math.max(1, Math.min(50, Number(qtyInput.value) || 1))
@@ -54,15 +64,136 @@ export function setupOrder() {
   qtyInput.addEventListener('input', recalc)
   recalc()
 
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault()
-    const qty = Number(qtyInput.value)
-    const unit = qty >= BULK_THRESHOLD ? PRICE_BULK : PRICE_SINGLE
-    const total = unit * qty + SHIPPING
-    alert(
-      `Order ready: ${qty} book${qty > 1 ? 's' : ''} — ${money(total)} including shipping.\n\nPayPal checkout will open here once the merchant account is connected.`,
-    )
-  })
+  const readShipping = () => {
+    const get = (id) => document.querySelector(id)?.value?.trim() || ''
+    return {
+      qty: Number(qtyInput.value) || 1,
+      name: get('#ship-name'),
+      email: get('#ship-email'),
+      phone: get('#ship-phone'),
+      address1: get('#ship-address1'),
+      address2: get('#ship-address2'),
+      city: get('#ship-city'),
+      state: get('#ship-state').toUpperCase(),
+      zip: get('#ship-zip'),
+    }
+  }
+
+  const validateForm = () => {
+    if (!form?.reportValidity()) return false
+    const data = readShipping()
+    if (!/^[A-Z]{2}$/.test(data.state)) {
+      showError('Please enter a 2-letter US state code (e.g. OR).')
+      return false
+    }
+    if (!/^\d{5}(-\d{4})?$/.test(data.zip)) {
+      showError('Please enter a valid US ZIP code.')
+      return false
+    }
+    showError('')
+    return true
+  }
+
+  const loadScript = (src) =>
+    new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src="${src}"]`)) return resolve()
+      const s = document.createElement('script')
+      s.src = src
+      s.onload = () => resolve()
+      s.onerror = () => reject(new Error('Could not load PayPal SDK'))
+      document.head.appendChild(s)
+    })
+
+  const initPaypal = async () => {
+    try {
+      const cfgRes = await fetch('/api/paypal-config')
+      const cfg = await cfgRes.json()
+      if (!cfg.configured || !cfg.clientId) {
+        if (statusEl) statusEl.textContent = 'PayPal merchant credentials are not connected yet.'
+        if (fallbackBtn) fallbackBtn.hidden = false
+        return
+      }
+
+      const sdk = `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(
+        cfg.clientId,
+      )}&currency=USD&intent=capture&components=buttons`
+      await loadScript(sdk)
+
+      if (!window.paypal) throw new Error('PayPal SDK unavailable')
+
+      if (statusEl) statusEl.hidden = true
+      if (buttonsEl) buttonsEl.hidden = false
+
+      window.paypal
+        .Buttons({
+          style: {
+            layout: 'vertical',
+            color: 'gold',
+            shape: 'pill',
+            label: 'paypal',
+          },
+          onClick: (_data, actions) => {
+            if (!validateForm()) return actions.reject()
+            return actions.resolve()
+          },
+          createOrder: async () => {
+            showError('')
+            const payload = readShipping()
+            const res = await fetch('/api/create-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            })
+            const data = await res.json()
+            if (!res.ok || !data.id) {
+              throw new Error(data.error || 'Could not start PayPal checkout')
+            }
+            sessionStorage.setItem(
+              'dominion-last-order',
+              JSON.stringify({ ...payload, paypalOrderId: data.id, totals: data.totals }),
+            )
+            return data.id
+          },
+          onApprove: async (data) => {
+            const saved = JSON.parse(sessionStorage.getItem('dominion-last-order') || '{}')
+            const res = await fetch('/api/capture-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderID: data.orderID,
+                email: saved.email,
+                name: saved.name,
+                phone: saved.phone,
+              }),
+            })
+            const result = await res.json()
+            if (!res.ok) {
+              throw new Error(result.error || 'Payment could not be completed')
+            }
+            window.location.href = `/order-success.html?orderId=${encodeURIComponent(result.id || data.orderID)}`
+          },
+          onCancel: () => {
+            window.location.href = '/order-cancel.html'
+          },
+          onError: (err) => {
+            console.error(err)
+            showError(err?.message || 'PayPal error — please try again.')
+          },
+        })
+        .render('#paypal-buttons')
+    } catch (err) {
+      console.error(err)
+      if (statusEl) statusEl.textContent = 'Checkout unavailable right now.'
+      if (fallbackBtn) {
+        fallbackBtn.hidden = false
+        fallbackBtn.textContent = 'Checkout temporarily unavailable'
+      }
+      showError(err.message || 'Could not initialize PayPal')
+    }
+  }
+
+  form?.addEventListener('submit', (e) => e.preventDefault())
+  initPaypal()
 }
 
 export function setupSample() {
