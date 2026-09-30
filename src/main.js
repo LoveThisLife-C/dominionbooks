@@ -235,6 +235,7 @@ export function setupSample() {
   if (!img) return
 
   const label = document.querySelector('#sample-label')
+  const pageCount = document.querySelector('#sample-page-count')
   const dots = document.querySelector('#sample-dots')
   const prev = document.querySelector('#sample-prev')
   const next = document.querySelector('#sample-next')
@@ -249,6 +250,7 @@ export function setupSample() {
   const MIN_ZOOM = 1
   const MAX_ZOOM = 2.75
   const STEP = 0.25
+  const total = samplePages.length
 
   const applyZoom = () => {
     scale = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, Number(scale.toFixed(2))))
@@ -268,20 +270,22 @@ export function setupSample() {
   samplePages.forEach((page, i) => {
     const btn = document.createElement('button')
     btn.type = 'button'
-    btn.setAttribute('aria-label', page.label)
+    btn.setAttribute('aria-label', `Go to page ${i + 1}: ${page.label}`)
+    btn.title = `Page ${i + 1}: ${page.label}`
     btn.addEventListener('click', () => show(i))
     dots.appendChild(btn)
   })
 
   const show = (i) => {
-    index = (i + samplePages.length) % samplePages.length
+    index = (i + total) % total
     img.classList.add('is-switching')
     setZoom(1)
     if (stage) stage.scrollTop = 0
     window.setTimeout(() => {
       img.src = samplePages[index].src
       img.alt = samplePages[index].label
-      label.textContent = `${samplePages[index].label} · ${index + 1} / ${samplePages.length}`
+      if (label) label.textContent = samplePages[index].label
+      if (pageCount) pageCount.textContent = `Page ${index + 1} of ${total}`
       ;[...dots.children].forEach((dot, di) => {
         dot.setAttribute('aria-current', di === index ? 'true' : 'false')
       })

@@ -47,14 +47,20 @@
             <button type="button" class="sample-nav next" id="sample-next" aria-label="Next page">›</button>
           </div>
           <div class="sample-meta">
-            <span id="sample-label">Front cover</span>
+            <div class="sample-meta-top">
+              <p class="sample-page-title" id="sample-label">Front cover</p>
+              <p class="sample-page-count" id="sample-page-count">Page 1 of 14</p>
+            </div>
             <div class="sample-zoom" role="group" aria-label="Zoom preview">
               <button type="button" id="sample-zoom-out" aria-label="Zoom out">−</button>
               <span id="sample-zoom-level">100%</span>
               <button type="button" id="sample-zoom-in" aria-label="Zoom in">+</button>
               <button type="button" id="sample-zoom-reset" class="sample-zoom-reset">Reset</button>
             </div>
-            <div class="sample-dots" id="sample-dots" role="tablist" aria-label="Sample pages"></div>
+            <div class="sample-pager">
+              <p class="sample-pager-label" id="sample-pager-label">Jump to a page</p>
+              <div class="sample-dots" id="sample-dots" role="tablist" aria-labelledby="sample-pager-label"></div>
+            </div>
           </div>
 
           <div class="detail-grid reveal" style="margin-top: 2rem">
