@@ -23,9 +23,11 @@ Project → Settings → Environment Variables:
 | `PAYPAL_CLIENT_SECRET` | from PayPal |
 | `PAYPAL_MODE` | `sandbox` then `live` |
 | `ORDER_NOTIFY_EMAIL` | `pastorhlw@gmail.com` (order + contact alerts) |
-| `RESEND_API_KEY` | optional — for order/contact emails via Resend |
-| `ORDER_NOTIFY_FROM` | optional — verified Resend from-address |
-| `SITE_URL` | optional — production URL |
+| `RESEND_API_KEY` | from resend.com — required for contact/order email |
+| `ORDER_NOTIFY_FROM` | `Dominion Books <orders@howardwilliamsbooks.com>` (verified domain) |
+| `SITE_URL` | optional — `https://howardwilliamsbooks.com` |
+
+Contact + order email setup: see `RESEND.md`.
 
 Redeploy after saving env vars.
 

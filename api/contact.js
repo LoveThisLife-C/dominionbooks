@@ -53,7 +53,7 @@ export default async function handler(req, res) {
 
     if (!result.ok) {
       return json(res, 502, {
-        error: 'Could not send message right now.',
+        error: result.error || 'Could not send message right now.',
         mailto: HOWARD_EMAIL,
       })
     }
