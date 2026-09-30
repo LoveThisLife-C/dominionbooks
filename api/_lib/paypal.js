@@ -28,8 +28,10 @@ export function paypalBase() {
 }
 
 export function requirePaypalEnv() {
-  const clientId = process.env.PAYPAL_CLIENT_ID || process.env.VITE_PAYPAL_CLIENT_ID
-  const clientSecret = process.env.PAYPAL_CLIENT_SECRET
+  const clientId = String(
+    process.env.PAYPAL_CLIENT_ID || process.env.VITE_PAYPAL_CLIENT_ID || '',
+  ).trim()
+  const clientSecret = String(process.env.PAYPAL_CLIENT_SECRET || '').trim()
   if (!clientId || !clientSecret) {
     const err = new Error(
       'PayPal is not configured. Set PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET on Vercel.',
